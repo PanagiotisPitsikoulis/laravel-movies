@@ -1,13 +1,6 @@
-import { Transition } from '@headlessui/react';
-import { InertiaLinkProps, Link } from '@inertiajs/react';
-import {
-    createContext,
-    Dispatch,
-    PropsWithChildren,
-    SetStateAction,
-    useContext,
-    useState,
-} from 'react';
+import {Transition} from '@headlessui/react';
+import {InertiaLinkProps, Link} from '@inertiajs/react';
+import {createContext, Dispatch, PropsWithChildren, SetStateAction, useContext, useState,} from 'react';
 
 const DropDownContext = createContext<{
     open: boolean;
@@ -15,11 +8,13 @@ const DropDownContext = createContext<{
     toggleOpen: () => void;
 }>({
     open: false,
-    setOpen: () => {},
-    toggleOpen: () => {},
+    setOpen: () => {
+    },
+    toggleOpen: () => {
+    },
 });
 
-const Dropdown = ({ children }: PropsWithChildren) => {
+const Dropdown = ({children}: PropsWithChildren) => {
     const [open, setOpen] = useState(false);
 
     const toggleOpen = () => {
@@ -27,14 +22,14 @@ const Dropdown = ({ children }: PropsWithChildren) => {
     };
 
     return (
-        <DropDownContext.Provider value={{ open, setOpen, toggleOpen }}>
+        <DropDownContext.Provider value={{open, setOpen, toggleOpen}}>
             <div className="relative">{children}</div>
         </DropDownContext.Provider>
     );
 };
 
-const Trigger = ({ children }: PropsWithChildren) => {
-    const { open, setOpen, toggleOpen } = useContext(DropDownContext);
+const Trigger = ({children}: PropsWithChildren) => {
+    const {open, setOpen, toggleOpen} = useContext(DropDownContext);
 
     return (
         <>
@@ -51,16 +46,16 @@ const Trigger = ({ children }: PropsWithChildren) => {
 };
 
 const Content = ({
-    align = 'right',
-    width = '48',
-    contentClasses = 'py-1 bg-white dark:bg-gray-700',
-    children,
-}: PropsWithChildren<{
+                     align = 'right',
+                     width = '48',
+                     contentClasses = 'py-1 bg-white dark:bg-gray-700',
+                     children,
+                 }: PropsWithChildren<{
     align?: 'left' | 'right';
     width?: '48';
     contentClasses?: string;
 }>) => {
-    const { open, setOpen } = useContext(DropDownContext);
+    const {open, setOpen} = useContext(DropDownContext);
 
     let alignmentClasses = 'origin-top';
 
@@ -106,10 +101,10 @@ const Content = ({
 };
 
 const DropdownLink = ({
-    className = '',
-    children,
-    ...props
-}: InertiaLinkProps) => {
+                          className = '',
+                          children,
+                          ...props
+                      }: InertiaLinkProps) => {
     return (
         <Link
             {...props}
