@@ -4,6 +4,10 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Models\Movie;
+use App\Models\DisplayTime;
+use App\Models\Reservation;
+
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -24,13 +28,22 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get("/movies", function () {
-    return Inertia::render('Movies');
+Route::get('movies', function () {
+    return Inertia::render('Movies', [
+        'movies' => Movie::all(),
+    ]);
 });
 
-Route::get("/movie", function () {
-    return Inertia::render('Movie');
+Route::middleware('auth')->group(function () {
+    Route::get('movie/{id}', function ($id) {
+        return Inertia::render('Movie', [
+            'movie' => Movie::findOrFail($id),
+            'display_times' => DisplayTime::all(),
+            'reservations' => Reservation::all(),
+        ]);
+    });
 });
+
 
 Route::get("/reservations", function () {
     return Inertia::render('Reservations');

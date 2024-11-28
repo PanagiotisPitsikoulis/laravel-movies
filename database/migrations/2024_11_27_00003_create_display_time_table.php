@@ -8,16 +8,14 @@ class CreateDisplayTimeTable extends Migration
 {
     public function up()
     {
-        Schema::create('display_time', function (Blueprint $table) {
+        Schema::create('display_times', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('movie_id');
-            $table->unsignedBigInteger('room_id');
             $table->time('time_start');
             $table->time('time_end');
             $table->timestamps();
 
-            $table->foreign('movie_id')->references('id')->on('movie')->onDelete('cascade');
-            $table->foreign('room_id')->references('id')->on('room')->onDelete('cascade');
+            $table->foreign('movie_id')->references('id')->on('movies')->onDelete('cascade');
         });
     }
 

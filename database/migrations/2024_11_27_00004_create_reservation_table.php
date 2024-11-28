@@ -4,22 +4,22 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateReservwationTable extends Migration
+class CreateReservationTable extends Migration
 {
     public function up()
     {
-        Schema::create('reservation', function (Blueprint $table) {
+        Schema::create('reservations', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('showtime_id');
+            $table->unsignedBigInteger('display_time_id');
             $table->string('status');
             $table->string('room_order');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('room_id');
+            $table->unsignedBigInteger('movie_id');
             $table->timestamps();
-
-            $table->foreign('showtime_id')->references('id')->on('display_time')->onDelete('cascade');
+            $table->foreign('display_time_id')->references('id')->on('display_times')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('room_id')->references('id')->on('room')->onDelete('cascade');
+
+            $table->foreign('movie_id')->references('id')->on('movies')->onDelete('cascade');
         });
     }
 
