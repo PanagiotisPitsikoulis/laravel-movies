@@ -14,17 +14,15 @@ class CreateReservationTable extends Migration
             $table->string('status');
             $table->string('room_order');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('movie_id');
             $table->timestamps();
             $table->foreign('display_time_id')->references('id')->on('display_times')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
-            $table->foreign('movie_id')->references('id')->on('movies')->onDelete('cascade');
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('reservation');
+        Schema::dropIfExists('reservations');
     }
 }

@@ -18,16 +18,4 @@ class Movie extends Model
         'category',
         'label',
     ];
-
-    /**
-     * Search for movies by a partial match on the title.
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param string $title
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeSearchByTitle($query, $title)
-    {
-        return $query->where('title', 'LIKE', '%' . $title . '%');
-    }
 }

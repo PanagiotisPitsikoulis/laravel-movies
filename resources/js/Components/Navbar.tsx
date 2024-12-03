@@ -6,9 +6,9 @@ export default function Navbar() {
     const user = usePage().props.auth.user;
 
     return <>
-        <header className="bg-white fixed top-0 left-0 right-0">
+        <header className="bg-teal-800 text-teal-100 fixed top-0 left-0 right-0 border-b border-teal-50/10">
             <div className="mx-auto flex h-16 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8">
-                <a className="block text-teal-600" href="/">
+                <a className="block" href="/">
                     <span className="sr-only">Home</span>
                     <ApplicationLogo className={"size-6 stroke-2"}/>
                 </a>
@@ -17,27 +17,32 @@ export default function Navbar() {
                     <nav aria-label="Global" className="hidden md:block">
                         <ul className="flex items-center gap-6 text-sm">
                             <li>
-                                <a className="text-gray-500 transition hover:text-gray-500/75"
-                                   href="/movies"> Movies </a>
-                            </li>
-
-                            <li>
-                                <a className="text-gray-500 transition hover:text-gray-500/75"
+                                <a className=" transition"
                                    href="/"> Home </a>
                             </li>
 
                             <li>
-                                <a className="text-gray-500 transition hover:text-gray-500/75"
+                                <a className=" transition"
+                                   href="/movies"> Movies </a>
+                            </li>
+
+                            <li>
+                                <a className=" transition"
+                                   href="/reservations"> Reservations </a>
+                            </li>
+
+                            <li>
+                                <a className=" transition"
                                    href="/profile"> Profile </a>
                             </li>
 
                             <li>
-                                <a className="text-gray-500 transition hover:text-gray-500/75"
+                                <a className=" transition"
                                    href="/login"> Log In </a>
                             </li>
 
                             <li>
-                                <a className="text-gray-500 transition hover:text-gray-500/75"
+                                <a className=" transition"
                                    href="/register"> Create Account </a>
                             </li>
                         </ul>
@@ -61,7 +66,7 @@ export default function Navbar() {
                             </div>
 
                             <button
-                                className="block rounded bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-600/75 md:hidden"
+                                className="block rounded bg-teal-100 text-teal-800 p-2.5 transition md:hidden"
                             >
                                 <span className="sr-only">Toggle menu</span>
                                 <svg
@@ -79,7 +84,7 @@ export default function Navbar() {
                     ) : <Dropdown>
                         <Dropdown.Trigger>
                             <button
-                                className="inline-flex items-center rounded-md bg-white border px-4 py-2 text-sm text-gray-500 hover:bg-gray-100"
+                                className="inline-flex items-center rounded-md bg-teal-100 text-teal-800 px-4 py-2 text-sm  "
                             >
                                 {user.name}
                                 <svg
@@ -97,14 +102,14 @@ export default function Navbar() {
                             </button>
                         </Dropdown.Trigger>
                         <Dropdown.Content>
-                            <Dropdown.Link href={route('profile.edit')} className="block px-4 py-2 hover:bg-gray-100">
+                            <Dropdown.Link href={route('profile.edit')} className="block px-4 py-2 ">
                                 Profile
                             </Dropdown.Link>
                             <Dropdown.Link
                                 href={route('logout')}
                                 method="post"
                                 as="button"
-                                className="block px-4 py-2 hover:bg-gray-100"
+                                className="block px-4 py-2 "
                             >
                                 Log Out
                             </Dropdown.Link>
